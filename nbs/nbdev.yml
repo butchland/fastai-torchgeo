@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "fastai-torchgeo"
+  site-url: "https://butchland.github.io/fastai-torchgeo"
+  description: "a fastai extension to use the torchgeo models and datasets"
+  repo-branch: main
+  repo-url: "https://github.com/butchland/fastai-torchgeo"
