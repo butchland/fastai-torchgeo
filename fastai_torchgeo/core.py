@@ -7,11 +7,12 @@ __all__ = ['load_tif']
 import rasterio as rio
 import typing
 import numpy as np
+import pathlib
 
 # %% ../nbs/00_core.ipynb 5
-def load_tif(fpath:str, # fileurosat 
-               chnls_last:typing.Optional[bool]=True, # transpose from c,h,w to h,w,c (assume c,h,w on rio.read input)
-               ) -> np.ndarray: # ndarray will either h,w,c or c,h,w depending on chnls_last is True or False
+def load_tif(fpath:typing.Union[str,pathlib.Path], # filename 
+             chnls_last:typing.Optional[bool]=True, # transpose from c,h,w to h,w,c (assume c,h,w on rio.read input)
+            ) -> np.ndarray: # ndarray will either h,w,c or c,h,w depending on chnls_last is True or False
     """
     Load tif function documentation
     
@@ -19,7 +20,7 @@ def load_tif(fpath:str, # fileurosat
     
     ## Parameters
     
-    - `fpath` (str): The file path of the image to be loaded.
+    - `fpath` (str|pathlib.Path): The file path of the image to be loaded.
     - `chnls_last` (bool, optional): If set to `True`, the function will return the image data in the format (height, width, channels) (h, w, c). If set to `False`, the function will return the image data in the format (channels, height, width) (c, h, w). Default value is `True`.
     
     ## Returns
