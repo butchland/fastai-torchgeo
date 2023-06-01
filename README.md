@@ -31,11 +31,7 @@ from fastai_torchgeo.core import load_tif
 load_tif?
 ```
 
-    Signature:
-    load_tif(
-        fpath: Union[str, pathlib.Path],
-        chnls_last: Optional[bool] = True,
-    ) -> numpy.ndarray
+    Signature: load_tif(fpath: str | pathlib.Path, chnls_last=True) -> numpy.ndarray
     Docstring:
     Load tif function documentation
 
