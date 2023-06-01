@@ -3,15 +3,15 @@
 # %% auto 0
 __all__ = ['load_tif']
 
-# %% ../nbs/00_core.ipynb 4
+# %% ../nbs/00_core.ipynb 5
 import rasterio as rio
 import typing
 import numpy as np
 import pathlib
 
-# %% ../nbs/00_core.ipynb 5
-def load_tif(fpath:typing.Union[str,pathlib.Path], # filename 
-             chnls_last:typing.Optional[bool]=True, # transpose from c,h,w to h,w,c (assume c,h,w on rio.read input)
+# %% ../nbs/00_core.ipynb 6
+def load_tif(fpath:[str,pathlib.Path], # filename 
+             chnls_last=True, # transpose from c,h,w to h,w,c (assume c,h,w on rio.read input)
             ) -> np.ndarray: # ndarray will either h,w,c or c,h,w depending on chnls_last is True or False
     """
     Load tif function documentation
