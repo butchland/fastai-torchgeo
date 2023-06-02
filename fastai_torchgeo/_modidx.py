@@ -15,4 +15,7 @@ d = { 'settings': { 'branch': 'master',
                                       'fastai_torchgeo.core.load_tif': ('core.html#load_tif', 'fastai_torchgeo/core.py'),
                                       'fastai_torchgeo.core.open_tif': ('core.html#open_tif', 'fastai_torchgeo/core.py'),
                                       'fastai_torchgeo.core.show': ('core.html#show', 'fastai_torchgeo/core.py')},
-            'fastai_torchgeo.data': {'fastai_torchgeo.data.GeoImageBlock': ('data.html#geoimageblock', 'fastai_torchgeo/data.py')}}}
+            'fastai_torchgeo.data': {'fastai_torchgeo.data.GeoImageBlock': ('data.html#geoimageblock', 'fastai_torchgeo/data.py')},
+            'fastai_torchgeo.resnet': { 'fastai_torchgeo.resnet.make_resnet_model': ( 'resnet.html#make_resnet_model',
+                                                                                      'fastai_torchgeo/resnet.py'),
+                                        'fastai_torchgeo.resnet.resnet_split': ('resnet.html#resnet_split', 'fastai_torchgeo/resnet.py')}}}
