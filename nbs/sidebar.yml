@@ -3,3 +3,5 @@ website:
     contents:
       - index.ipynb
       - 00_core.ipynb
+      - 01_data.ipynb
+      - 02_resnet.ipynb
