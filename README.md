@@ -13,46 +13,78 @@ A [fastai](https://docs.fast.ai) extension to use the
 [torchgeo](https://torchgeo.readthedocs.io/en/stable/) models and
 datasets
 
-## Install
+## Installation
 
 ``` bash
 pip install git+https://github.com/butchland/fastai-torchgeo.git
 ```
 
-## How to use
+## General Information
 
-### Load a tif file
+`fastai-torchgeo` provides adapters and utilities to enable the
+`torchgeo` package to be used alongside `fastai`. The goal is make it
+easier to use `fastai` for geospatial machine learning.
 
-``` python
-from fastai_torchgeo.core import load_tif
-```
+In addition to the utilities, we also provide examples of how to
+integrate `torchgeo` datasets and models into `fastai` workflows, such
+as EDA, training and inference.
 
-``` python
-load_tif?
-```
+Each of `fastai-torchgeo` modules have their own page and you are
+encouraged to browse through them as they also provide usage examples.
 
-    Signature: load_tif(fpath: str | pathlib.Path, chnls_last=True) -> numpy.ndarray
-    Docstring:
-    Load tif function documentation
+To get a quick taste of what this package can do, take a look at the
+examples below.
 
-    The `load_tif` function is designed to load a geotiff from a file, transpose its channels if necessary, and return the image data as a NumPy array.
+> **Note**: All the pages in this site are written as jupyter notebooks
+> that can be run on [Google Colab](https://colab.research.google.com).
+> Just click on the
+> [![](https://raw.githubusercontent.com/butchland/fastai-torchgeo/master/assets/colab.svg)](https://colab.research.google.com/github/butchland/fastai-torchgeo/blob/master/nbs/index.ipynb)
+> button near the top of each notebook (*including this one!*).
 
-    ## Parameters
+## Examples
 
-    - `fpath` (str|pathlib.Path): The file path of the image to be loaded.
-    - `chnls_last` (bool, optional): If set to `True`, the function will return the image data in the format (height, width, channels) (h, w, c). If set to `False`, the function will return the image data in the format (channels, height, width) (c, h, w). Default value is `True`.
-
-    ## Returns
-
-    - `numpy.ndarray`: The image data as a NumPy array. The shape of the array depends on the value of `chnls_last`.
-      - If `chnls_last` is `True`, the returned array will have the shape `(height, width, channels)`.
-      - If `chnls_last` is `False`, the returned array will have the shape `(channels, height, width)`.
-    File:      ~/play/experiments/fastai-torchgeo/fastai_torchgeo/core.py
-    Type:      function
+### Loading a tif file
 
 ``` python
-data = load_tif(sat_image) 
-data.shape # height,width, channels
+from torchgeo.datasets import EuroSAT100
+import fastai.vision.all as fv
+
+# load a sample geotiff dataset
+sat_path = fv.untar_data(EuroSAT100.url)
+sat_images = fv.get_image_files(sat_path)
+sat_image = sat_images[15]; sat_image
 ```
 
-    (64, 64, 13)
+    Path('/home/butch2/.fastai/data/EuroSAT100/images/remote_sensing/otherDatasets/sentinel_2/tif/River/River_458.tif')
+
+``` python
+from fastai_torchgeo.core import load_tif, open_tif, GeoTensorImage
+
+arr = load_tif(sat_image) 
+(type(arr),arr.shape) # ndarray, (height,width, channels)
+```
+
+    (numpy.ndarray, (64, 64, 13))
+
+``` python
+# load sat image as tensor
+t_img = open_tif(sat_image)
+(type(t_img), t_img.shape)
+```
+
+    (torch.Tensor, torch.Size([64, 64, 13]))
+
+``` python
+geo_t = GeoTensorImage.create(sat_image)
+(type(geo_t), geo_t.shape)
+```
+
+    (fastai_torchgeo.core.GeoTensorImage, torch.Size([13, 64, 64]))
+
+### Showing geo tensor images
+
+``` python
+geo_t.show();
+```
+
+![](index_files/figure-commonmark/cell-6-output-1.png)
