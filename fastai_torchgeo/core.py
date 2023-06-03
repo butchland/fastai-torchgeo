@@ -183,6 +183,6 @@ class GeoTensorImage(fv.TensorImage):
         visu_img = np.where(visu_img > 1, 1, visu_img)
         visu_img = np.where(visu_img < 0, 0, visu_img)
 
-        ax = plt.imshow(visu_img) if ctx is None else ctx.imshow(visu_img)
+        plt.imshow(visu_img) if ctx is None else ctx.imshow(visu_img)
 
-        return ax
+        return ctx
