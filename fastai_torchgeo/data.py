@@ -10,5 +10,6 @@ from functools import partial
 
 # %% ../nbs/01_data.ipynb 6
 def GeoImageBlock(chnls_first=True):
-    return fv.TransformBlock(type_tfms=partial(GeoTensorImage.create,chnls_first=chnls_first))
-                             
+    return fv.TransformBlock(
+        type_tfms=partial(GeoTensorImage.create, chnls_first=chnls_first)
+    )
