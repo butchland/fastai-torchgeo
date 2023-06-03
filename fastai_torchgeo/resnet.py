@@ -11,7 +11,26 @@ from fastai_torchgeo.data import GeoImageBlock
 import torch.nn as nn
 
 # %% ../nbs/02_resnet.ipynb 7
-def make_resnet_model(model, n_out):
+def make_resnet_model(
+    model: nn.Module,  # pretrained torchgeo model
+    n_out: int,  # number of outputs
+) -> nn.Module:  # new model with a new head for finetuning
+    """
+    Creates a ResNet model by cutting the fully connected (fc) layer of a pretrained ResNet model and replacing it with a new head.
+
+    The new head is created by concatenating adaptive pooling layers and a linear layer followed by an activation
+    function. The new head is then appended to the cut model
+
+    #### Parameters
+
+    - `model` (torch.nn.Module): A pretrained ResNet model.
+    - `n_out` (int): The number of output classes.
+
+    #### Returns
+
+    - `torch.nn.Module`: The ResNet model with the new head.
+    """
+
     ll = list(enumerate(model.children()))
     cut = next(i for i, o in reversed(ll) if fv.has_pool_type(o))
     c_model = fv.cut_model(model, cut)
@@ -34,5 +53,19 @@ def make_resnet_model(model, n_out):
     return res
 
 # %% ../nbs/02_resnet.ipynb 8
-def resnet_split(m):
+def resnet_split(
+    m: nn.Module,  # A model
+) -> [nn.Module]:  # A list of parameter groups
+    """
+    Splits the resnet model parameters into parameter groups
+
+    Used by fastai for discriminative learning rates (finetuning)
+
+    #### Parameters
+    - `m` (nn.Module): Model
+
+    #### Returns
+    - `[torch.nn.Module]` : A list of parameter groups
+
+    """
     return fv.L(m[0][:6], m[0][6:], m[1:]).map(fv.params)
