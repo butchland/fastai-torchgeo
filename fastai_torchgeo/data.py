@@ -10,6 +10,17 @@ from functools import partial
 
 # %% ../nbs/01_data.ipynb 6
 def GeoImageBlock(chnls_first=True):
+    """
+    Returns a TransformBlock that creates a GeoTensorImage object from an input image tensor.
+
+    #### Parameters
+
+    - `chnls_first` (bool, optional): A boolean indicating whether the input tensor has `channels` as the first dimension. Default is True.
+
+    #### Returns
+
+    - `fastai.transforms.TransformBlock` : A `TransformBlock` object that applies `GeoTensorImage.create` on an input tensor or filename.
+    """
     return fv.TransformBlock(
         type_tfms=partial(GeoTensorImage.create, chnls_first=chnls_first)
     )
