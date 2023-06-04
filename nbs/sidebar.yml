@@ -5,3 +5,6 @@ website:
       - 00_core.ipynb
       - 01_data.ipynb
       - 02_resnet.ipynb
+      - section: tutorials
+        contents:
+          - tutorials/03-eurosat-classifcation.ipynb
