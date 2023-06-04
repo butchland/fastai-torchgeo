@@ -19,7 +19,7 @@ from functools import partial
 
 # %% ../nbs/00_core.ipynb 5
 def load_tif(
-    fpath: str | pathlib.Path,  # filename
+    fpath: Union[str, pathlib.Path],  # filename
     chnls_last=True,  # transpose from c,h,w to h,w,c (assume c,h,w on rio.read input)
 ) -> (
     np.ndarray
@@ -46,7 +46,7 @@ def load_tif(
 
 # %% ../nbs/00_core.ipynb 14
 def open_tif(
-    fn: str | pathlib.Path,  # The path to the TIFF image file
+    fn: Union[str, pathlib.Path],  # The path to the TIFF image file
     chnls: [int] = None,  # The channels to load from the image
     chnls_last: bool = True,  # If True, the channel dimension is the last dimension
     cls=th.Tensor,  # The class of the tensor to create
