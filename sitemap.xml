@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://butchland.github.io/fastai-torchgeo/core.html</loc>
+    <lastmod>2023-06-04T14:32:17.657Z</lastmod>
+  </url>
+  <url>
+    <loc>https://butchland.github.io/fastai-torchgeo/tutorials/03-eurosat-classification.html</loc>
+    <lastmod>2023-06-04T14:32:18.737Z</lastmod>
+  </url>
+  <url>
+    <loc>https://butchland.github.io/fastai-torchgeo/resnet.html</loc>
+    <lastmod>2023-06-04T14:32:19.285Z</lastmod>
+  </url>
+  <url>
+    <loc>https://butchland.github.io/fastai-torchgeo/data.html</loc>
+    <lastmod>2023-06-04T14:32:19.629Z</lastmod>
+  </url>
+  <url>
+    <loc>https://butchland.github.io/fastai-torchgeo/index.html</loc>
+    <lastmod>2023-06-04T14:32:19.977Z</lastmod>
+  </url>
+</urlset>
