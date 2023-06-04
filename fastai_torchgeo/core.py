@@ -19,7 +19,7 @@ from functools import partial
 
 # %% ../nbs/00_core.ipynb 5
 def load_tif(
-    fpath: Union[str, pathlib.Path],  # filename
+    fpath: Union[str, pathlib.Path],  # file path of the image to be loaded
     chnls_last=True,  # transpose from c,h,w to h,w,c (assume c,h,w on rio.read input)
 ) -> (
     np.ndarray
